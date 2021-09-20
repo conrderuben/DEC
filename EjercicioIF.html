@@ -6,15 +6,21 @@
 	<title> Ejemplo de función</title>
     <script>
         function esMultiplo(){
-            
+            if((parseInt(document.getElementById("idtxt").value)%2)===0){
+                document.getElementById("idDiv").innerHTML="El numero es multiplo de 2";
+
+            }else{
+                document.getElementById("idDiv").innerHTML="El numero no es multiplo de 2";
+            }
         }                   
     </script>
     
 </head>
-<!-- document.getElementById("idDiv").innerHTML-->
 <body>
    Introducir un numero 
-   <input type="text" id="id"/>
+   <input type="text" id="idtxt"/>
+   <input type="button" value="Aceptar" id="boton" onclick="esMultiplo();"/>
+   <div id="idDiv"></div>
                     
 </body>
 

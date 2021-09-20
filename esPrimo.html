@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title> esPrimo</title>
+    <script>
+        function esPrimo(){
+            var a=parseInt(document.getElementById("idtxt").value);
+            var texto="El numero es disivisible entre el numero primo";
+            if(a%2==0){
+                texto=texto + " 2";
+            }
+            if(a%3==0){
+                texto=texto + " 3";
+            }
+            if(a%5==0){
+                texto=texto + " 5";
+            }
+            if(a%7==0){
+                texto=texto + " 7";
+            }
+            if(a%2==0 || a%3==0 || a%5==0 || a%7==0){
+                document.getElementById("idDiv").innerHTML=texto;
+            }else{
+                document.getElementById("idDiv").innerHTML="No es divisible por ningun numero primo menor de 10";
+            }
+            
+        }                   
+    </script>
+    
+</head>
+<body>
+   Introducir un numero 
+   <input type="text" id="idtxt"/>
+   <input type="button" value="Aceptar" id="boton" onclick="esPrimo();"/>
+   <div id="idDiv"></div>
+                    
+</body>
+
+</html>
