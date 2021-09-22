@@ -1,0 +1,42 @@
+<!-- Pedir un número y que te indique la caregoria-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function decirCategoria() {
+            var edad = parseInt(document.getElementById("idtxt").value);
+            switch (edad) {
+                case 18:
+                case 17:
+                case 16: document.getElementById("idDiv").innerHTML = "Juvenil"; break;
+                case 15:
+                case 14: document.getElementById("idDiv").innerHTML = "Cadete"; break;
+                case 13: 
+                case 12: document.getElementById("idDiv").innerHTML = "Infantil"; break;
+                case 11: 
+                case 10: document.getElementById("idDiv").innerHTML = "Alevin"; break;
+                case 9:
+                case 8: document.getElementById("idDiv").innerHTML = "Benjamin"; break;
+                case 7: 
+                case 6:
+                case 5: document.getElementById("idDiv").innerHTML = "Pre Benjamin"; break;
+                default: document.getElementById("idDiv").innerHTML = "Fuera de categoria"; break;
+
+            }
+        }
+    </script>
+</head>
+
+<body>
+    Escribe tu edad:
+    <input type="text" id="idtxt" />
+    <input type="button" value="Aceptar" id="boton" onclick="decirCategoria();" />
+    <div id="idDiv"></div>
+</body>
+
+</html>

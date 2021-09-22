@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function decirTaller(){
+            var texto=document.getElementById("idtxt").value;
+            switch(texto.toLowerCase()){
+                case "ford": document.getElementById("idDiv").innerHTML="Talleres Velasco";break;
+                case "citroen": document.getElementById("idDiv").innerHTML="Talleres Doctor Esquerdo";break;
+                case "peugeot": document.getElementById("idDiv").innerHTML="Talleres las Acacias";break;
+                default: document.getElementById("idDiv").innerHTML="Esa marca no esta registrada";break;
+
+            }
+        }
+    </script>
+</head>
+<body>
+    Marca de coche
+    <input type="text" id="idtxt"/>
+    <input type="button" value="Aceptar" id="boton" onclick="decirTaller();"/>
+    <div id="idDiv"></div>
+</body>
+</html>
