@@ -1,0 +1,42 @@
+<!--
+    Introducir un numero, darle a un boton y decir si es primo o no lo es
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title> esPrimo</title>
+    <script>
+        function esPrimo() {
+            var a = parseInt(document.getElementById("idtxt").value);
+
+            var cont = 0;
+            for (var i = 1; i <= a; i++) {
+                if (a % i != 0) {
+                    cont++;
+                }
+            }
+
+            if (cont == a - 2) {
+                document.getElementById("idDiv").innerHTML = "El numero " + a + "  es primo";
+
+
+            } else {
+                document.getElementById("idDiv").innerHTML = "El numero " + a + " no es primo";
+            }
+
+        }
+    </script>
+
+</head>
+
+<body>
+    Introducir un numero
+    <input type="text" id="idtxt" />
+    <input type="button" value="Aceptar" id="boton" onclick="esPrimo();" />
+    <div id="idDiv"></div>
+
+</body>
+
+</html>
