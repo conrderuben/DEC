@@ -1,0 +1,44 @@
+<!-- 
+    a.Crear la variable "fechaHoy" con fecha de hoy y mostrarla.
+    b.Crear la variable "fecha85" que sume 85 dias a la variable "fechaHoy" y mostrarla.
+    c.Crear la variable "fecha187" que reste 187 dias a la variable "fechaHoy" y mostrarla.
+    d.Sumar 2 años a la variable "fecha85" y mostrala.
+    e.Restar 24 horas a la variable "fecha187" y mostrarla.
+    f.Crear la variable "fechaResto" que sea la resta de fecha85-fecha187 y observa los que obtienes y mostrarla.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios fechas</title>
+
+    <script>
+        
+        var fechaHoy=new Date();
+        var fecha85=new Date(fechaHoy);
+        var fecha187=new Date(fechaHoy);
+        document.write("a." + fechaHoy.toDateString() + "<br>");
+        fecha85.setDate(fechaHoy.getDate()+85);
+        document.write("b." + fecha85.toDateString() + "<br>");
+        fecha187.setDate(fechaHoy.getDate()-187);
+        document.write("c." + fecha187.toDateString() + "<br>");
+        fecha85.setFullYear(fecha85.getFullYear()+2);
+        document.write("d." + fecha85.toDateString() + "<br>");
+        fecha187.setHours(fecha187.getHours()-24);
+        document.write("e." + fecha187.toDateString() + "<br>");
+        var fechaResto=new Date(fecha85.getTime()-fecha187.getTime());
+        //var fechaResto=new Date((fecha85.getMonth()-fecha187.getMonth()), (fecha85.getDate()-fecha187.getDate()), (fecha85.getFullYear()-fecha187.getFullYear()));
+        document.write("f." + fechaResto.toDateString());
+
+
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

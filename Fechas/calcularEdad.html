@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CalcularEdad</title>
+    <script>
+        function calcularEdad(){
+
+        
+        var anio = parseInt(document.getElementById("anio").value);
+        var mes = parseInt(document.getElementById("mes").value) -1;
+        var dia = parseInt(document.getElementById("dia").value);
+        var fechaHoy =new Date();
+        var fechaDada = new Date(anio,mes,dia);
+        var edad=(fechaHoy.getFullYear()-fechaDada.getFullYear());
+        if(fechaHoy.getMonth()==fechaDada.getMonth() && fechaHoy.getDate()<fechaDada.getDate()){
+            edad=edad-1;
+        }
+        document.getElementById("div").innerHTML =edad;
+    }
+
+
+
+        
+    </script>
+</head>
+<body>
+    Año
+    <input type="text" id="anio" ><br>
+    Mes
+    <input type="text" id="mes" ><br>
+    Dia
+    <input type="text" id="dia" ><br>
+    <input type="button" value="Calcular" onclick="calcularEdad();">
+    <div id="div"></div>
+</body>
+</html>
