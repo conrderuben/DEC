@@ -16,7 +16,7 @@
         var fechaDada = new Date(anio,mes,dia);
         var edad=(fechaHoy.getFullYear()-fechaDada.getFullYear());
         if(fechaHoy.getMonth()==fechaDada.getMonth() && fechaHoy.getDate()<fechaDada.getDate()){
-            edad=edad-1;
+            edad--;
         }
         document.getElementById("div").innerHTML =edad;
     }
