@@ -1,0 +1,37 @@
+<!-- variable 1=setTimeout(funcion, tiempo (en milisegundos)) >> Repite la funcion que cada x milisengundos
+     clearTimeout(variable1) >> para pararlo
+     variable2= setInterval(funcopn, tiempo)
+     clear interval(variable2)
+     document.getElementById("miboton").dissabled=true/false >> lo que hace es desactivar el boton-->
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+          <meta charset="UTF-8">
+          <meta http-equiv="X-UA-Compatible" content="IE=edge">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Reloj</title>
+
+          <script>
+              parar="";
+              function reloj(){
+                  var tiempo=new Date();
+                  document.getElementById("div").innerHTML=tiempo.toTimeString();
+                  document.getElementById("botoninterval").disabled=true;
+              }
+
+              function pararI(){
+                clearInterval(parar);
+                document.getElementById("botoninterval").disabled=false;
+              }
+              
+              
+          </script>
+      </head>
+      <body>
+          <input type="button" id="botonTime" value="setTimeout" onclick="setTimeout(reloj, 1000)">
+          <input type="button" id="botoninterval" value="Interval" onclick="parar=setInterval(reloj, 1000)">
+          <input type="button" id="botonparar" value="Parar" onclick="pararI();">
+          <div id="div"></div>
+          
+      </body>
+      </html>
