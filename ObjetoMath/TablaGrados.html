@@ -1,0 +1,33 @@
+<!-- 
+Hacer una tabla que muestre los grados, los radianes, los senos y los cosenos de los grados de 10 en 10.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="div"></div>
+    <script>
+        var texto = "<table border='1'><tr><th>Grados</th><th>Radianes</th><th>Seno</th><th>Coseno</th></tr>";
+        for (var grados = 0; grados <= 360; grados += 10) {
+            var radianes = (Math.PI * grados) / 180;
+            texto += "<tr><td>" + grados + "</td><td>" + radianes.toFixed(3) + "</td><td>" + Math.sin(radianes).toFixed(3) + "</td><td>" + Math.cos(radianes).toFixed(3) + "</td></tr>"
+
+        }
+        texto += "</table>"
+        document.getElementById("div").innerHTML = texto;
+    </script>
+
+
+
+
+
+</body>
+
+</html>
