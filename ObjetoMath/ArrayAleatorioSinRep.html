@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function generar(){
+            var elementos=parseInt(document.getElementById("el").value);
+            var menor=parseInt(document.getElementById("menor").value);
+            var mayor=parseInt(document.getElementById("mayor").value);
+            var array=[];
+            var numero;
+            if(mayor<menor){
+                var a=mayor;
+                mayor=menor;
+                menor=a;
+            }
+
+            if((mayor-menor)<elementos){
+                document.getElementById("div").innerHTML="El numero de elementos no es valido con los valores introducidos";
+
+            }else{
+
+            
+
+            for(var i=0; i<elementos; i++){
+                var n=Math.floor((Math.random()*(mayor-menor+1))+menor);
+                for(j=0; j<array.length; j++){
+                    if(array[j]=n){
+                        n=Math.floor((Math.random()*(mayor-menor+1))+menor);
+                    }
+                }
+                array[array.length]=n;
+                
+            }
+            document.getElementById("div").innerHTML=array;
+        }
+    }
+    </script>
+</head>
+<body>
+    Numero de elementos
+    <input type="text" id="el"><br>
+    Menor
+    <input type="text" id="menor"><br>
+    Mayor
+    <input type="text" id="mayor"><br>
+    <input type="button" id="boton" value="generar" onclick="generar();">
+    <div id="div"></div>
+</body>
+</html>

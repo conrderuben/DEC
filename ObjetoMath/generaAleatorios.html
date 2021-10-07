@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genera aleatorios</title>
+    <script>
+        function aleatorio(){
+            var menor=parseInt(document.getElementById("menor").value);
+            var mayor=parseInt(document.getElementById("mayor").value);
+            var texto="";
+            var numero;
+
+            for(var i=0; i<5; i++){
+                numero=Math.floor((Math.random()*(mayor-menor+1))+menor);
+                texto+=numero + " ";
+            }
+            document.getElementById("div").innerHTML=texto;
+        }
+    </script>
+</head>
+<body>
+    Menor
+    <input type="text" id="menor"><br>
+    Mayor
+    <input type="text" id="mayor"><br>
+    <input type="button" id="boton" value="generar" onclick="aleatorio();">
+    <div id="div"></div>
+</body>
+</html>
