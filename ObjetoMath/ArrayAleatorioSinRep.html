@@ -18,24 +18,29 @@
                 menor=a;
             }
 
-            if((mayor-menor)<elementos){
+            if(((mayor-menor)+1)<elementos){
                 document.getElementById("div").innerHTML="El numero de elementos no es valido con los valores introducidos";
 
             }else{
 
             
-
-            for(var i=0; i<elementos; i++){
+               var existe=false;
+            do{
                 var n=Math.floor((Math.random()*(mayor-menor+1))+menor);
-                for(j=0; j<array.length; j++){
-                    if(array[j]=n){
-                        n=Math.floor((Math.random()*(mayor-menor+1))+menor);
-                    }
+                for(var j=0; j<array.length; j++){
+                    if(array[j]==n){
+                        existe=true;  
                 }
-                array[array.length]=n;
-                
             }
+                if(!existe || array.length==0){
+                    array[array.length]=n;
+                }   
+            
+            }while(array.length<elementos);
             document.getElementById("div").innerHTML=array;
+            document.getElementById("div2").innerHTML=array.sort();
+
+            
         }
     }
     </script>
@@ -49,5 +54,6 @@
     <input type="text" id="mayor"><br>
     <input type="button" id="boton" value="generar" onclick="generar();">
     <div id="div"></div>
+    <div id="div2"></div>
 </body>
 </html>
