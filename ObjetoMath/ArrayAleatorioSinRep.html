@@ -11,7 +11,6 @@
             var menor=parseInt(document.getElementById("menor").value);
             var mayor=parseInt(document.getElementById("mayor").value);
             var array=[];
-            var numero;
             if(mayor<menor){
                 var a=mayor;
                 mayor=menor;
@@ -24,15 +23,15 @@
             }else{
 
             
-               var existe=false;
             do{
+                var existe=false;
                 var n=Math.floor((Math.random()*(mayor-menor+1))+menor);
                 for(var j=0; j<array.length; j++){
                     if(array[j]==n){
                         existe=true;  
                 }
             }
-                if(!existe || array.length==0){
+                if(!existe|| array.length==0){
                     array[array.length]=n;
                 }   
             
