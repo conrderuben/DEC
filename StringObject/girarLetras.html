@@ -9,27 +9,27 @@
     <script>
         var texto ="";
         var pararD="";
-        var paraI="";
+        var pararI="";
         function iniciarDerecha(){
-             texto = document.getElementById("text").value;
+             texto = document.getElementById("texto").value;
             pararD=setInterval("girarDerecha();",1000);
 
         }
         function iniciarIzquierda(){
-             texto = document.getElementById("text").value;
+             texto = document.getElementById("texto").value;
             pararI=setInterval("girarIzquierda();",1000);
 
         }
         
         function girarDerecha() {
             clearInterval(pararI);
-            texto = texto.charAt(texto.length()-1) + texto.substring(0, texto.lenth()-2) ;
+            texto = texto.charAt(texto.length-1) + texto.substring(0, texto.length-2) ;
             document.getElementById('div').innerHTML = texto;
         }
 
         function girarIzquierda() {
             clearInterval(pararD);
-            texto = texto.substring(1, (texto.length()-1)) + texto.charAt(0);
+            texto = texto.substring(1, (texto.length-1)) + texto.charAt(0);
             document.getElementById("div").innerHTML = texto;
         }
     </script>
@@ -37,7 +37,7 @@
 
 <body>
     Texto
-    <input type="text" id="text">
+    <input type="text" id="texto">
     <input type="button" id="botonIz" value="Girar a la izquierda" onclick="iniciarIzquierda();">
     <input type="button" id="botonDe" value="Girar a la derecha" onclick="iniciarDerecha();">
 
