@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Girar Letras</title>
+    <script>
+        var texto ="";
+        var pararD="";
+        var paraI="";
+        function iniciarDerecha(){
+             texto = document.getElementById("text").value;
+            pararD=setInterval("girarDerecha();",1000);
+
+        }
+        function iniciarIzquierda(){
+             texto = document.getElementById("text").value;
+            pararI=setInterval("girarIzquierda();",1000);
+
+        }
+        
+        function girarDerecha() {
+            clearInterval(pararI);
+            texto = texto.charAt(texto.length()-1) + texto.substring(0, texto.lenth()-2) ;
+            document.getElementById('div').innerHTML = texto;
+        }
+
+        function girarIzquierda() {
+            clearInterval(pararD);
+            texto = texto.substring(1, (texto.length()-1)) + texto.charAt(0);
+            document.getElementById("div").innerHTML = texto;
+        }
+    </script>
+</head>
+
+<body>
+    Texto
+    <input type="text" id="text">
+    <input type="button" id="botonIz" value="Girar a la izquierda" onclick="iniciarIzquierda();">
+    <input type="button" id="botonDe" value="Girar a la derecha" onclick="iniciarDerecha();">
+
+    <div id="div"></div>
+</body>
+
+</html>
