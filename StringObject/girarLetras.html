@@ -7,29 +7,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Girar Letras</title>
     <script>
-        var texto ="";
-        var pararD="";
-        var pararI="";
-        function iniciarDerecha(){
-             texto = document.getElementById("texto").value;
-            pararD=setInterval("girarDerecha();",1000);
+        var texto = "";
+        var pararD = "";
+        var pararI = "";
+        function iniciarDerecha() {
+            texto = document.getElementById("texto").value;
+            pararD = setInterval("girarDerecha();", 1000);
 
         }
-        function iniciarIzquierda(){
-             texto = document.getElementById("texto").value;
-            pararI=setInterval("girarIzquierda();",1000);
+        function iniciarIzquierda() {
+            texto = document.getElementById("texto").value;
+            pararI = setInterval("girarIzquierda();", 1000);
 
         }
-        
+
         function girarDerecha() {
             clearInterval(pararI);
-            texto = texto.charAt(texto.length-1) + texto.substring(0, texto.length-2) ;
+            texto = texto.charAt(texto.length - 1) + texto.substring(0, texto.length - 1);
             document.getElementById('div').innerHTML = texto;
         }
 
         function girarIzquierda() {
             clearInterval(pararD);
-            texto = texto.substring(1, (texto.length-1)) + texto.charAt(0);
+            texto = texto.substring(1, texto.length) + texto.charAt(0);
             document.getElementById("div").innerHTML = texto;
         }
     </script>
