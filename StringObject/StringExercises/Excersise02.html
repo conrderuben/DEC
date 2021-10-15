@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 01</title>
+    <script>
+function convert(){
+    var name = document.getElementById('name').value;
+    var surname = document.getElementById('surname').value;
+    var surname2 = document.getElementById('surname2').value;
+
+    name=name.toUpperCase();
+    surname=surname.toUpperCase();
+    surname2=surname2.toUpperCase();
+
+    name=name.charAt(0) + name.substring(1).toLowerCase();
+    surname=surname.charAt(0) + surname.substring(1).toLowerCase();
+    surname2=surname2.charAt(0) + surname2.substring(1).toLowerCase();
+
+    document.getElementById('div').innerHTML=name+" "+surname+" "+surname2;
+    document.getElementById('div2').innerHTML=name+surname+surname2;
+}
+
+    </script>
+</head>
+<body>
+    Name:
+    <input type="text" id='name'><br>
+    Surname 1:
+    <input type="text" id='surname'><br>
+    Surname 2:
+    <input type="text" id='surname2'><br>
+    <input type="button" id='button' value="covert" onclick="convert();">
+    <div id='div'></div>
+    <div id='div2'></div>
+</body>
+</html>

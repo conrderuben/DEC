@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise05</title>
+    <script>
+        var phrase="busco palabras con menos de cinco letras";
+        var arraywords=phrase.split(" ");
+        var cont=0;
+        var contCo=0;
+        var existe=false;
+        var pepe;
+        for(var i=0; i<arraywords.length; i++){
+            if(arraywords[i].length<5){
+                cont++;
+                
+            }
+        }
+        for(var i=0;i<phrase.length; i++){
+            if(phrase.substr(i,2)=="co"){
+                existe=true;
+                contCo++;
+                if(contCo==1){
+                    pepe=phrase.substring(0,i) + "Pepe" + phrase.substring(i+2);
+                }
+            }
+        }
+        document.write("<h2>The phrase is '" + phrase + "'</h2><br>");
+        document.write("The number of words with less than 5 letters is: " + cont + "<br>");
+
+        if(existe==true){
+            document.write("Exist the combination co " + contCo + " veces<br>");
+        }else{
+            document.write("The combination (co) doesnt exist<br>");
+        }
+        document.write("The phrase changing co for Pepe: " + pepe + "<br>");
+    </script>
+</head>
+<body>
+</body>
+</html>

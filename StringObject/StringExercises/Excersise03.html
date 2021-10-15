@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function check(){
+        var city=document.getElementById('city').value;
+
+        city=city.toLowerCase();
+        if((city=='madrid') || (city=='barcelona') || (city=='bilbao') || (city=='sevilla')){
+            document.getElementById('div').innerHTML="La ciudad introducida es " + city;
+
+        }else{
+            document.getElementById('div').innerHTML="La ciudad introducida no es correcta."
+        }
+    }
+    </script>
+</head>
+<body>
+    City
+    <input type="text" id='city'>
+    <input type="button" id="button" value="CONFIRM" onclick="check();">
+    <div id="div"></div>
+</body>
+</html>
