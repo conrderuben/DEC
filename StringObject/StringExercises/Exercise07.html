@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise07</title>
+    <script>
+        var text="Hola Amigos";
+        var separate=" ";
+        for(var i=0;i<text.length; i++){
+        if(text.charAt(i)==" "){
+            separate +=" ";
+
+        }else if(text.charAt(i+1)==" "){
+            separate+=text.charAt(i);
+        }else{
+            separate+=text.charAt(i) + "-";
+        }
+        }
+        document.write(separate.substring(0,separate.length-1) + ".");
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

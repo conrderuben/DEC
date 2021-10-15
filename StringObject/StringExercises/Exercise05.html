@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,17 +8,23 @@
     <title>Exercise05</title>
     <script>
         var phrase="busco palabras con menos de cinco letras";
+        console.log(phrase.replace('/a/gi', 'o'));
         var arraywords=phrase.split(" ");
         var cont=0;
         var contCo=0;
         var existe=false;
         var pepe;
+        var ao="";
+        var separate="";
+        //The number of words with less than 5 letters
         for(var i=0; i<arraywords.length; i++){
             if(arraywords[i].length<5){
                 cont++;
                 
             }
         }
+        //The combination co exist
+        //The phrase changing co for Pepe
         for(var i=0;i<phrase.length; i++){
             if(phrase.substr(i,2)=="co"){
                 existe=true;
@@ -26,16 +33,24 @@
                     pepe=phrase.substring(0,i) + "Pepe" + phrase.substring(i+2);
                 }
             }
+            separate+=phrase.charAt(i) + ", ";
+            
         }
+        
+        
+        ao=phrase.replace(/a/g, 'o');
+        
         document.write("<h2>The phrase is '" + phrase + "'</h2><br>");
         document.write("The number of words with less than 5 letters is: " + cont + "<br>");
 
         if(existe==true){
-            document.write("Exist the combination co " + contCo + " veces<br>");
+            document.write("The combination co exist " + contCo + " times<br>");
         }else{
             document.write("The combination (co) doesnt exist<br>");
         }
         document.write("The phrase changing co for Pepe: " + pepe + "<br>");
+        document.write("The phrase changing a for o: " + ao + "<br>" )
+        document.write("The phrase separating the letters by commas: " + separate + "<br>" )
     </script>
 </head>
 <body>
