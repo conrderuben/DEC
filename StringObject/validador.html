@@ -24,6 +24,8 @@
             document.getElementById('edad').value="";
         }
         function validarNombre(nombre){
+            var texto="";
+            errorLetra="";
             for(var i = 0; i<nombre.length; i++){
                 if(!letras.includes(nombre[i])){
                     errorLetra+=(i+1) + ", ";
@@ -31,24 +33,42 @@
 
             }
             if(errorLetra!=""){
-            document.getElementById('divNombre').innerHTML= "Hay un error en los caracteres " +  errorLetra.substring(0,errorLetra.length-2);
+                texto="Hay un error en los caracteres " +  errorLetra.substring(0,errorLetra.length-2);
+            document.getElementById('divNombre').innerHTML= texto;
+            document.getElementById('divNombre').style.color="red";
+        }else if(nombre.length<3 || nombre.length>25){
+            texto="Error de longitud";
+            document.getElementById('divNombre').innerHTML= texto;
+            document.getElementById('divNombre').style.color="red";
         }else{
-            document.getElementById('divNombre').innerHTML= "No hay errores";
+            texto="No hay errores";
+            document.getElementById('divNombre').innerHTML=texto;
+            document.getElementById('divNombre').style.color="blue";
 
         }
 
         }
         function validarEdad(edad){
+            var texto="";
+            errorNumero="";
             for(var i = 0; i<edad.length; i++){
                 if(!numeros.includes(edad[i])){
                     errorNumero+=i+1 + ", ";
                 }
         }
         if(errorNumero!=""){
-            document.getElementById('divEdad').innerHTML= "Hay un error en los caracteres " +  errorNumero.substring(0,errorNumero.length-2);
+            texto="Hay un error en los caracteres " +  errorNumero.substring(0,errorNumero.length-2);
+            document.getElementById('divEdad').innerHTML=texto;
+            document.getElementById('divEdad').style.color="red";
+        }
+        else if(parseInt(edad)<5 || parseInt(edad)>110){
+            texto="Hay un error de edad maxima o minima";
+            document.getElementById('divEdad').innerHTML=texto;
+            document.getElementById('divEdad').style.color="red";
         }else{
-            document.getElementById('divEdad').innerHTML= "No hay errores";
-
+            texto= "No hay errores";
+            document.getElementById('divEdad').innerHTML=texto;
+            document.getElementById('divEdad').style.color="blue";
         }
         
     }
