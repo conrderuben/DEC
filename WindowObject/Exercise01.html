@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="myfunction()">Pulse para abrir ventana</button>
+    <script>
+        function myfunction(){
+            var miVentana = window.open("","miVentana", "top=300,left=300,width=500,height=400"); 
+            miVentana.document.open();
+            miVentana.document.write("<select id='s'><option value='red'>rojo</option><option value='green'>verde</option><option value='yellow'>amarillo</option><option value='blue'>azul</option></select><button onclick=document.bgColor=document.getElementById('s').value>Cambiar</button>");
+            miVentana.document.close();
+         }
+    </script>
+</body>
+</html>
+

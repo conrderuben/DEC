@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Objeto Window</title>
+</head>
+<body>
+Introuzca nombre de la ventana<input type="text" id="miTexto"/>
+<p>Haga click en los botones para abrir las ventanas</p>
+<button onclick="mYfunction()">Pulse para abrir ventana</button>
+<button onclick="mYfunction2()">Pulse para abrir ventana que reemplaza la actual</button><br>
+<button onclick="mYfunction3()">Pulse para abrir nueva ventana</button>
+<button onclick="mYfunction4()">Pulse para abrir varias ventanas</button>
+<button onclick="mYfunction5()">Pulse para abrir una ventana con nombre</button><br>
+<button onclick="abrir()">Abrir Nueva Ventana</button>
+<button onclick="cerrar()">Cerrar Nueva Ventana</button>
+<div id="miDiv"></div>
+<script>
+var varVentana;
+function abrir(){
+varVentana=window.open("", "miVentana", "top=300,left=300,width=500,height=400");
+varVentana.document.open();
+varVentana.document.write("<p>Esta es miVentana</p><br><button onclick='window.close();'>Cerrar Nueva Ventana</button>");
+varVentana.document.close();
+}
+function cerrar(){
+varVentana.close();
+}
+</script>
+<script>
+function mYfunction(){
+  var miVentana = window.open("https://www.nasa.es", "_blank", "top=300,left=300,width=600,height=600");  
+}	
+function mYfunction2(){
+  var miVentana = window.open("", "_blank");
+  miVentana.document.open();
+  miVentana.document.write("<p> Voy a reemplazar la entana actual</p>");  ç
+  miVentana.document.close();
+}
+function mYfunction3(){
+  var miVentana = window.open("", "miVentana2", "width=600,height=600");
+  miVentana.document.open();
+  miVentana.document.write("<p>Esta es "+miVentana.name+", tengo 600 pixels de ancho y 600 pixels de altura </p>");  ç
+  miVentana.document.close();
+}	
+function mYfunction4(){
+  window.open("https://www.google.es");
+  window.open("https://www.w3schools.com","","top=300,left=300,width=600,height=600");
+}  
+function mYfunction5(){
+  var texto = document.getElementById("miTexto").value;
+  var nuevaVentana = window.open("",texto,"");
+  nuevaVentana.document.open();
+  nuevaVentana.document.write("<title>"+nuevaVentana.name+"</title>");
+  nuevaVentana.document.write("<h1>"+nuevaVentana.name+"</h1>");
+  nuevaVentana.document.close();
+}  
+</script>         
+</body>
+</html>		
