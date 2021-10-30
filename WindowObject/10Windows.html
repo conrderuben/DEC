@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10Windows</title>
+</head>
+<body>
+    <input type="button" onclick="abrir()" value="Abrir ventanas"/>
+
+
+    <script>
+        function abrir(){
+            for(var i=1; i<=10; i++){
+                var varVentana;
+                varVentana=window.open("", "Ventana" +i,"top="+i*20+",left="+i*20+",width=100,height=200");
+                varVentana.document.open();
+                varVentana.document.write("<title>Ventana " + i + "</title><body>Ventana " + i + "</body>");
+                varVentana.document.write("<button onclick='window.close();'>Cerrar Nueva Ventana</button><script>setTimeout('window.close()',5000)\<\/script>");
+                varVentana.document.close();
+            }
+        } 
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MultipeWindow</title>
+</head>
+<body>
+    Intoduzca el top y el left de la ventana emergente<input type="text" id="dimensiones">
+    <button value="mostrar" onclick="abrir();">Mostrar</button>
+    <button value="cerrar" onclick="cerrar();">Cerrar</button>
+
+    <script>
+        var varVentana;
+        
+        function abrir(){
+            var distancia=document.getElementById('dimensiones').value;
+            varVentana = window.open("","","top="+distancia+",left="+distancia+",width=400,height=400");
+            varVentana.document.open();
+            varVentana.document.write("<button onclick='window.close()'>Cerrar Nueva Ventana</button><script>setTimeout('window.close()', 10000);\<\/script>");
+            varVentana.document.close();
+        }
+        function cerrar(){
+            varVentana.close();
+        }   
+
+
+    </script>
+</body>
+</html>
