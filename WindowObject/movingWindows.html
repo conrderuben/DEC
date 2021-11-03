@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>movingWindows</title>
+</head>
+<body>
+    <button onclick="mover();">mover</button>
+    <button onclick="redimensionar();">redimensionar</button>
+    <button onclick="myr();">mover y redimensionar</button>
+    <button onclick="moverhasta();">mover hasta</button>
+    Valor X: <input type="text" id="x">
+    Valor Y: <input type="text" id="y">
+
+
+    <script>
+        var varVentana;
+        var parar;
+        function mover(){
+            varVentana=window.open("", "Ventana", "top=50,left=50,width=75,height=50");
+            parar=setInterval("varVentana.moveBy(20,20);",60);
+            setTimeout("clearInterval(parar), varVentana.close()",5000);
+        }
+
+        function redimensionar(){
+            varVentana=window.open("", "Ventana", "top=50,left=50,width=75,height=50");
+            for(var i=0; i<500; i++){
+                varVentana.resizeTo(i,i);
+            }
+            setTimeout("varVentana.close()",5000);
+            
+        }
+        function myr(){
+            varVentana=window.open("", "Ventana", "top=50,left=50,width=75,height=50");
+            for(var i=0; i<400; i++){
+                varVentana.resizeTo(i,i);
+                varVentana.moveTo(i,i);
+            }
+            setTimeout("varVentana.close()",5000);
+        }
+        function moverhasta(){
+            var x=document.getElementById("x").value;
+            var y=document.getElementById("y").value;
+            varVentana=window.open("", "Ventana", "top="+x+",left="+y+",width=75,height=50");
+            setTimeout("varVentana.close()",5000);
+        }
+
+    </script>
+</body>
+</html>
