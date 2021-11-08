@@ -1,54 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exercise01</title>
 </head>
+
 <body>
     Numero
     <input type="text" id="box"><br>
-    <input type="button" onclick="primero();" value="|<<">
-    <input type="button" onclick="anterior();" value="<">
-    <input type="button" onclick="siguiente();" value=">">
-    <input type="button" onclick="ultimo();" value=">>|">
+    <input type="button" onclick="primero();" value="|<<" id="primero">
+    <input type="button" onclick="anterior();" value="<" id="anterior">
+    <input type="button" onclick="siguiente();" value=">" id="siguiente">
+    <input type="button" onclick="ultimo();" value=">>|" id="ultimo">
+    <br>
+    <input type="button" onclick="alta();" value="Alta" id="botonAlta">
+    <input type="button" onclick="baja();" value="Baja" id="botonBaja">
+    <input type="button" onclick="modificacion();" value="Modificacion" id="botonModificacion">
+    <input type="button" onclick="listado();" value="Listado" id="botonListado">
+    <br> Ordenado ascendentemente<br> Ordenado descendentemente<br>
+    <input type="button" value="aceptar" onclick="aceptar();">
 
     <script>
-         var array=new Array(1,2,3,4,5,6,7,8,9,10);
-         var selected=array.indexOf(5);
-         document.getElementById('box').value = array[selected];
-         
-         function primero(){
-             selected = 0;
-             document.getElementById('box').value = array[selected];
-         }
+        var accion = "";
+        var array = new Array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        var selected = array.indexOf(5);
+        document.getElementById('box').value = array[selected];
 
-         function anterior(){
+        function primero() {
+            selected = 0;
+            document.getElementById('box').value = array[selected];
+        }
+
+        function anterior() {
             selected--;
-             if(selected==-1){
-                 selected=array.length-1;
-             }
+            if (selected == -1) {
+                selected = array.length - 1;
+            }
             document.getElementById('box').value = array[selected];
-             
-         }
-
-         function siguiente(){
-            selected++;
-            if(selected==array.length){
-                 selected=0;
-             }
-            document.getElementById('box').value = array[selected];
-         
 
         }
 
-         function ultimo(){
-            selected = array.length-1;
+        function siguiente() {
+            selected++;
+            if (selected == array.length) {
+                selected = 0;
+            }
             document.getElementById('box').value = array[selected];
-         }
-         
+
+
+        }
+
+        function ultimo() {
+            selected = array.length - 1;
+            document.getElementById('box').value = array[selected];
+        }
+
+        function alta() {
+            accion = "alta";
+            document.getElementById('primero').disabled = true;
+            document.getElementById('anterior').disabled = true;
+            document.getElementById('siguiente').disabled = true;
+            document.getElementById('ultimo').disabled = true;
+            document.getElementById('botonBaja').disabled = true;
+            document.getElementById('botonAlta').disabled = true;
+            document.getElementById('botonModificacion').disabled = true;
+            document.getElementById('botonListado').disabled = true;
+            document.getElementById('box').value = "";
+
+
+
+        }
+
+        function baja() {
+            accion = "baja";
+            document.getElementById('primero').disabled = true;
+            document.getElementById('anterior').disabled = true;
+            document.getElementById('siguiente').disabled = true;
+            document.getElementById('ultimo').disabled = true;
+            document.getElementById('botonBaja').disabled = true;
+            document.getElementById('botonAlta').disabled = true;
+            document.getElementById('botonModificacion').disabled = true;
+            document.getElementById('botonListado').disabled = true;
+            document.getElementById('box').value = "";
+        }
+
+        function aceptar() {
+            if (accion == "alta") {
+
+                var num = document.getElementById('box').value
+                if (num.match(/^[0-9]+$/)) {
+                    array[array.length] = num;
+                } else {
+                    alert('Tiene que ser un numero')
+                }
+                document.getElementById('primero').disabled = false;
+                document.getElementById('anterior').disabled = false;
+                document.getElementById('siguiente').disabled = false;
+                document.getElementById('ultimo').disabled = false;
+                document.getElementById('botonBaja').disabled = false;
+                document.getElementById('botonAlta').disabled = false;
+                document.getElementById('botonModificacion').disabled = false;
+                document.getElementById('botonListado').disabled = false;
+                document.getElementById('box').value = array[4];
+
+            }
+            if (accion == "alta") {
+
+                var num = document.getElementById('box').value
+                if (num.match(/^[0-9]+$/)) {
+                    array[array.length] = num;
+                } else {
+                    alert('Tiene que ser un numero')
+                }
+                document.getElementById('primero').disabled = false;
+                document.getElementById('anterior').disabled = false;
+                document.getElementById('siguiente').disabled = false;
+                document.getElementById('ultimo').disabled = false;
+                document.getElementById('botonBaja').disabled = false;
+                document.getElementById('botonAlta').disabled = false;
+                document.getElementById('botonModificacion').disabled = false;
+                document.getElementById('botonListado').disabled = false;
+                document.getElementById('box').value = array[4];
+
+            } else if (accion == "baja") {
+                var num = document.getElementById('box').value
+                if (num.match(/^[0-9]+$/)) {
+                    array[array.length] = num;
+                } else {
+                    alert('Tiene que ser un numero')
+                }
+            }
+        }
     </script>
 
 </body>
+
 </html>
