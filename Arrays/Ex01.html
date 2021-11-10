@@ -20,14 +20,21 @@
     <input type="button" onclick="baja();" value="Baja" id="botonBaja">
     <input type="button" onclick="modificacion();" value="Modificacion" id="botonModificacion">
     <input type="button" onclick="listado();" value="Listado" id="botonListado">
-    <br> Ordenado ascendentemente<br> Ordenado descendentemente<br>
+    <br> Ordenado ascendentemente
+    <div id="as"></div>
+    Ordenado descendentemente<br>
+    <div id="des"></div>
     <input type="button" value="aceptar" onclick="aceptar();">
 
     <script>
         var accion = "";
         var array = new Array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
         var selected = array.indexOf(5);
+        var arrayAs = array.slice();
+        var arrayDes = array.slice();
         document.getElementById('box').value = array[selected];
+        var ventanaListado = new Window();
+
 
         function primero() {
             selected = 0;
@@ -87,26 +94,32 @@
             document.getElementById('box').value = "";
         }
 
+        function modificacion() {
+            accion = "modificacion";
+            document.getElementById('botonBaja').disabled = true;
+            document.getElementById('botonAlta').disabled = true;
+            document.getElementById('botonModificacion').disabled = true;
+            document.getElementById('botonListado').disabled = true;
+        }
+
+        function listado() {
+            ventanaListado = window.open("", "", "height=300,width=200,top=300,left=300");
+            ventanaListado.document.open();
+            ventanaListado.document.write("Array<br><input type='text' id='array' disabled='disabled' value='" + array + "'><br>");
+            ventanaListado.document.write("Array ascendente<br><input type='text' id='arrayAs' disabled='disabled' value='" + arrayAs.sort(function(a, b) {
+                return a - b;
+            }) + "'><br>");
+            ventanaListado.document.write("Array descendente<br><input type='text' id='arrayDes' disabled='disabled' value='" + arrayDes.sort(function(a, b) {
+                return b - a;
+            }) + "'><br>");
+            ventanaListado.document.close();
+        }
+
+
+
         function aceptar() {
-            if (accion == "alta") {
-
-                var num = document.getElementById('box').value
-                if (num.match(/^[0-9]+$/)) {
-                    array[array.length] = num;
-                } else {
-                    alert('Tiene que ser un numero')
-                }
-                document.getElementById('primero').disabled = false;
-                document.getElementById('anterior').disabled = false;
-                document.getElementById('siguiente').disabled = false;
-                document.getElementById('ultimo').disabled = false;
-                document.getElementById('botonBaja').disabled = false;
-                document.getElementById('botonAlta').disabled = false;
-                document.getElementById('botonModificacion').disabled = false;
-                document.getElementById('botonListado').disabled = false;
-                document.getElementById('box').value = array[4];
-
-            }
+            document.getElementById('as').innerHTML = arrayAs;
+            document.getElementById('des').innerHTML = arrayDes;
             if (accion == "alta") {
 
                 var num = document.getElementById('box').value
@@ -132,10 +145,28 @@
                 } else {
                     alert('Tiene que ser un numero')
                 }
+            } else if (accion == "modificacion") {
+                var cambio = parseInt(prompt());
+                array[selected] = cambio;
+                document.getElementById('botonBaja').disabled = false;
+                document.getElementById('botonAlta').disabled = false;
+                document.getElementById('botonModificacion').disabled = false;
+                document.getElementById('botonListado').disabled = false;
+                document.getElementById('box').value = array[selected];
             }
+            arrayAs.sort(ascendente());
+            arrayDes.sort(descendente());
+
+            function ascendente(a, b) {
+                return a - b;
+            }
+
+            function descendente(a, b) {
+                return b - a;
+            }
+
         }
     </script>
-
 </body>
 
 </html>
