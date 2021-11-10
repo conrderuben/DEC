@@ -20,23 +20,33 @@
     <input type="button" onclick="baja();" value="Baja" id="botonBaja">
     <input type="button" onclick="modificacion();" value="Modificacion" id="botonModificacion">
     <input type="button" onclick="listado();" value="Listado" id="botonListado">
-    <br>
-    Ordenado ascendentemente
+    <br> Ordenado ascendentemente
     <div id="as"></div>
-    <br>
-    Ordenado descendentemente
+    Ordenado descendentemente<br>
     <div id="des"></div>
-    <br>
     <input type="button" value="aceptar" onclick="aceptar();">
 
     <script>
+        function ascendente(a, b) {
+            return a - b;
+        }
+
+        function descendente(a, b) {
+            return b - a;
+        }
+
         var accion = "";
         var array = new Array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
-        var selected = array.indexOf(1);
-
+        var selected = array.indexOf(5);
         document.getElementById('box').value = array[selected];
+        var arrayAs = array.slice().sort(ascendente);
+        var arrayDes = array.slice().sort(descendente);
+        var ventanaListado = new Window();
+
+
 
         function primero() {
+            alert(arrayAs);
             selected = 0;
             document.getElementById('box').value = array[selected];
         }
@@ -89,51 +99,74 @@
             document.getElementById('botonListado').disabled = true;
         }
 
-        function aceptar() {
-            var num = parseInt(document.getElementById('box').value);
-            var pos = array.indexOf(num);
+        function modificacion() {
+            accion = "modificacion";
+            document.getElementById('botonBaja').disabled = true;
+            document.getElementById('botonAlta').disabled = true;
+            document.getElementById('botonModificacion').disabled = true;
+            document.getElementById('botonListado').disabled = true;
+        }
 
+        function listado() {
+            ventanaListado = window.open("", "", "height=800,width=600,top=300,left=300");
+            ventanaListado.document.open();
+            ventanaListado.document.write("Array<br><input type='text' id='array' disabled='disabled' value='" + array + "'><br>");
+            ventanaListado.document.write("Array ascendente<br><input type='text' id='arrayAs' disabled='disabled' value='" + arrayAs + "'><br>");
+            ventanaListado.document.write("Array descendente<br><input type='text' id='arrayDes' disabled='disabled' value='" + arrayDes + "'><br>");
+            ventanaListado.document.write("<button onclick='window.close()'>Cerrar</button>");
+            ventanaListado.document.write("<table border='1'><th>Array</th><th>Ascendente</th><th>Descendente</th>");
+            for( var i=0; i<array.length; i++ ){
+            ventanaListado.document.write('<tr><td>' + array[i] + '</td><td>' + arrayAs[i] + '</td><td>' + arrayDes[i] + '</td></tr>');
+            }
+            ventanaListado.document.write("</table>");
+            ventanaListado.document.close();
+        }
+
+
+
+        function aceptar() {
             if (accion == "alta") {
+                var num = document.getElementById('box').value;
                 if (num.match(/^[0-9]+$/)) {
                     array[array.length] = num;
                 } else {
-                    alert('Tiene que ser un numero')
+                    alert('Tiene que ser un numero');
                 }
-                document.getElementById('primero').disabled = false;
-                document.getElementById('anterior').disabled = false;
-                document.getElementById('siguiente').disabled = false;
-                document.getElementById('ultimo').disabled = false;
-                document.getElementById('botonBaja').disabled = false;
-                document.getElementById('botonAlta').disabled = false;
-                document.getElementById('botonModificacion').disabled = false;
-                document.getElementById('botonListado').disabled = false;
-                document.getElementById('box').value = array[0];
 
             } else if (accion == "baja") {
-
                 document.getElementById('botonBaja').disabled = false;
                 document.getElementById('botonAlta').disabled = false;
                 document.getElementById('botonModificacion').disabled = false;
                 document.getElementById('botonListado').disabled = false;
-                array.splice(pos, 1);
-                document.getElementById('box').value = array[0];
-                selected = array.indexOf(1);
+                array.splice(selected, 1);
+                selected = 0;
+                document.getElementById('box').value = array[selected];
 
+
+
+            } else if (accion == "modificacion") {
+                var cambio = parseInt(prompt());
+                array[selected] = cambio;
 
             }
-            
-            var resultadoDes=array.sort(function (a, b) {
-                return b - a;
-            });
-            var resultadoAs=array.sort(function (a, b) {
-                return a - b;
-            });
-            document.getElementById('as').innerHTML=resultadoAs;
-            document.getElementById('des').innerHTML=resultadoDes;
-            
+            document.getElementById('primero').disabled = false;
+            document.getElementById('anterior').disabled = false;
+            document.getElementById('siguiente').disabled = false;
+            document.getElementById('ultimo').disabled = false;
+            document.getElementById('botonBaja').disabled = false;
+            document.getElementById('botonAlta').disabled = false;
+            document.getElementById('botonModificacion').disabled = false;
+            document.getElementById('botonListado').disabled = false;
+            document.getElementById('box').value = array[selected];
+            arrayAs = array.slice().sort(ascendente);
+            arrayDes = array.slice().sort(descendente);
+            document.getElementById('as').innerHTML = arrayAs;
+            document.getElementById('des').innerHTML = arrayDes;
+
+
+
         }
     </script>
-
 </body>
 
 </html>
