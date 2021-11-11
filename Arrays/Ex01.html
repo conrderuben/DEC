@@ -115,8 +115,8 @@
             ventanaListado.document.write("Array descendente<br><input type='text' id='arrayDes' disabled='disabled' value='" + arrayDes + "'><br>");
             ventanaListado.document.write("<button onclick='window.close()'>Cerrar</button>");
             ventanaListado.document.write("<table border='1'><th>Array</th><th>Ascendente</th><th>Descendente</th>");
-            for( var i=0; i<array.length; i++ ){
-            ventanaListado.document.write('<tr><td>' + array[i] + '</td><td>' + arrayAs[i] + '</td><td>' + arrayDes[i] + '</td></tr>');
+            for (var i = 0; i < array.length; i++) {
+                ventanaListado.document.write('<tr><td>' + array[i] + '</td><td>' + arrayAs[i] + '</td><td>' + arrayDes[i] + '</td></tr>');
             }
             ventanaListado.document.write("</table>");
             ventanaListado.document.close();
@@ -127,27 +127,44 @@
         function aceptar() {
             if (accion == "alta") {
                 var num = document.getElementById('box').value;
-                if (num.match(/^[0-9]+$/)) {
-                    array[array.length] = num;
-                } else {
-                    alert('Tiene que ser un numero');
+                var confirmar = confirm("Estas seguro de que quieres dar de alta el numero " + num);
+                if (confirmar) {
+                    if (num.match(/^[0-9]+$/)) {
+                        array[array.length] = num;
+                    } else {
+                        alert('Tiene que ser un numero');
+                    }
                 }
 
             } else if (accion == "baja") {
-                document.getElementById('botonBaja').disabled = false;
-                document.getElementById('botonAlta').disabled = false;
-                document.getElementById('botonModificacion').disabled = false;
-                document.getElementById('botonListado').disabled = false;
-                array.splice(selected, 1);
-                selected = 0;
-                document.getElementById('box').value = array[selected];
+                var confirmar = confirm("Estas seguro de que quieres eliminar el numero " + array[selected]);
+                if (confirmar) {
+
+
+
+                    document.getElementById('botonBaja').disabled = false;
+                    document.getElementById('botonAlta').disabled = false;
+                    document.getElementById('botonModificacion').disabled = false;
+                    document.getElementById('botonListado').disabled = false;
+                    array.splice(selected, 1);
+                    selected = 0;
+                    document.getElementById('box').value = array[selected];
+                } else {
+                    document.getElementById('botonBaja').disabled = false;
+                    document.getElementById('botonAlta').disabled = false;
+                    document.getElementById('botonModificacion').disabled = false;
+                    document.getElementById('botonListado').disabled = false;
+                }
 
 
 
             } else if (accion == "modificacion") {
                 var cambio = parseInt(prompt());
-                array[selected] = cambio;
+                var confirmar = confirm("Estas seguro de que quieres modificar el numero " + array[selected] + " por el numero " + cambio);
+                if (confirmar) {
+                    array[selected] = cambio;
 
+                }
             }
             document.getElementById('primero').disabled = false;
             document.getElementById('anterior').disabled = false;
