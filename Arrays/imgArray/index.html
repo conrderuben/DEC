@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise01</title>
+</head>
+
+<body>
+    <div id='box' style=" height: 200px; width: 300px; margin: 0 auto; text-align: center;">
+        <input type="text" id="text"><input type="button" onclick="aceptar();" value="aceptar" id="aceptar" style="margin-bottom: 10px;">
+        <img src="" alt="foto" id="img" style="height: 200px; width: 300px; border: 1px solid black;">
+        <input type="button" onclick="primero();" value="|<<" id="primero">
+        <input type="button" onclick="anterior();" value="<" id="anterior">
+        <input type="button" onclick="siguiente();" value=">" id="siguiente">
+        <input type="button" onclick="ultimo();" value=">>|" id="ultimo">
+    </div>
+    <script>
+        var array = new Array("uno.jpg", "dos.jpg", "tres.jpg", "cuatro.jpg");
+        var arrayNombres = new Array("uno", "dos", "tres", "cuatro", "cinco", "seis");
+        var selected = 0;
+        document.getElementById('img').src = array[selected];
+
+        setInterval();
+
+        function primero() {
+            selected = 0;
+            document.getElementById('img').src = array[selected];
+        }
+
+        function anterior() {
+            selected--;
+            if (selected == -1) {
+                selected = array.length - 1;
+            }
+            document.getElementById('img').src = array[selected];
+
+        }
+
+        function siguiente() {
+            selected++;
+            if (selected == array.length) {
+                selected = 0;
+            }
+            document.getElementById('img').src = array[selected];
+
+
+        }
+
+        function ultimo() {
+            selected = array.length - 1;
+            document.getElementById('img').src = array[selected];
+        }
+
+        function aceptar() {
+            var nombre = document.getElementById('text').value;
+            if (arrayNombres.indexOf(nombre) == -1) {
+                alert(nombre + " no es valido");
+            } else {
+                var confirmar = confirm("Estas seguro de que quieres añadir la imagen " + nombre);
+                if (confirmar) {
+                    array[array.length] = nombre + ".jpg";
+                    selected = array.length - 1;
+                    document.getElementById('img').src = array[selected];
+
+
+                }
+            }
+        }
+    </script>
+
+
+
+</body>
+
+</html>

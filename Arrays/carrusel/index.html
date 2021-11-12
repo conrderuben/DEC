@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise01</title>
+</head>
+
+<body>
+    <div id='box' style=" height: 200px; width: 300px; margin: 0 auto; text-align: center;">
+        <input type="text" id="text"><input type="button" onclick="aceptar();" value="aceptar" id="aceptar" style="margin-bottom: 10px;">
+        <img src="" alt="foto" id="img" style="height: 200px; width: 300px; border: 1px solid black;">
+        <input type="button" onclick="iniciar();" value="iniciar" id="iniciar">
+        <input type="button" onclick="parar();" value="parar" id="iniciar">
+    </div>
+    <script>
+        var pararse = "";
+        var array = new Array("uno.jpg", "dos.jpg", "tres.jpg", "cuatro.jpg");
+        var selected = 0;
+        document.getElementById('img').src = array[selected];
+
+
+        function iniciar() {
+            pararse = setInterval("carrusel();", 1000);
+        }
+
+        function parar() {
+            clearInterval(pararse);
+        }
+
+
+        function carrusel() {
+            if (selected == array.length - 1) {
+                selected = 0;
+            } else {
+                selected++;
+            }
+
+            document.getElementById('img').src = array[selected];
+        }
+    </script>
+
+
+
+</body>
+
+</html>
