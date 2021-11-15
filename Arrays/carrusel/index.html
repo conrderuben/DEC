@@ -12,21 +12,34 @@
     <div id='box' style=" height: 200px; width: 300px; margin: 0 auto; text-align: center;">
         <input type="text" id="text"><input type="button" onclick="aceptar();" value="aceptar" id="aceptar" style="margin-bottom: 10px;">
         <img src="" alt="foto" id="img" style="height: 200px; width: 300px; border: 1px solid black;">
-        <input type="button" onclick="iniciar();" value="iniciar" id="iniciar">
-        <input type="button" onclick="parar();" value="parar" id="iniciar">
+        <input type="button" onclick="iniciar();" value="iniciar" id="inicia">
+        <input type="button" onclick="parar();" value="parar" id="para">
+        <input type="button" onclick="aumentarV();" value="Aumentar velocidad" id="aV">
+        <input type="button" onclick="disminuirV();" value="Disminuir velocidad" id="dV">
     </div>
     <script>
         var pararse = "";
+        var v = 1000;
         var array = new Array("uno.jpg", "dos.jpg", "tres.jpg", "cuatro.jpg");
         var selected = 0;
         document.getElementById('img').src = array[selected];
 
+        function aumentarV() {
+            v = v - 500;
+        }
+
+        function disminuirV() {
+            v = v + 500;
+        }
+
 
         function iniciar() {
-            pararse = setInterval("carrusel();", 1000);
+            document.getElementById("inicia").disabled = true;
+            pararse = setInterval("carrusel();", v);
         }
 
         function parar() {
+            document.getElementById("inicia").disabled = false;
             clearInterval(pararse);
         }
 
