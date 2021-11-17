@@ -26,7 +26,7 @@
             var name = document.getElementById('text').value;
 
             objects.push(new Car(name));
-            objects.forEach(element => document.getElementById('mydiv').innerHTML = element);
+            objects.forEach(element => document.getElementById('mydiv').innerHTML = element.name);
         }
     </script>
 </body>
