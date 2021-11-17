@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Creator</title>
+</head>
+
+<body>
+    Nombre
+    <input type="text" id="text">
+    <input type="button" onclick="carCreator();" value="Aceptar">
+    <div id="mydiv"></div>
+
+    <script>
+        var objects = [];
+        class Car {
+            constructor(name) {
+                this.name = name;
+            }
+        }
+
+        function carCreator() {
+            var name = document.getElementById('text').value;
+
+            objects.push(new Car(name));
+            objects.forEach(element => document.getElementById('mydiv').innerHTML = element);
+        }
+    </script>
+</body>
+
+</html>
