@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HumanClass</title>
+</head>
+
+<body>
+    <script>
+        class Human {
+            constructor(edad, peso) {
+                this._edad = edad;
+                this._peso = peso;
+            }
+
+            set edad(x) {
+                this._edad = x;
+            }
+            get edad() {
+                return this._edad;
+            }
+
+            set peso(x) {
+                this._peso = x;
+            }
+            get peso() {
+                return this._peso;
+            }
+
+            comer() {
+                this._peso += 1;
+            }
+
+            correr() {
+                this._peso -= 1;
+            }
+
+            muestraUnDato() {
+                return "Peso = " + this._peso + "------ Edad = " + this._edad;
+            }
+
+            static mostrarDatos(x) {
+                return "Peso = " + x._peso + "------ Edad = " + this._edad;
+                "
+            }
+
+        }
+    </script>
+
+</body>
+
+</html>
