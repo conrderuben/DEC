@@ -25,8 +25,9 @@
         function carCreator() {
             var name = document.getElementById('text').value;
 
+            document.getElementById('mydiv').innerHTML = '';
             objects.push(new Car(name));
-            objects.forEach(element => document.getElementById('mydiv').innerHTML = element.name);
+            objects.forEach(element => document.getElementById('mydiv').innerHTML += '<br>' + element.name);
         }
     </script>
 </body>
