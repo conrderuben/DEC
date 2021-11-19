@@ -9,7 +9,24 @@
 </head>
 
 <body>
+
+    Edad<input type="text" id="edad"> Peso
+    <input type="text" id="peso"><br>
+    <input type="button" value="|<<" onclick="primero()">
+    <input type="button" value="<" onclick="anterior()">
+    <input type="button" value=">" onclick="siguiente()">
+    <input type="button" value=">>|" onclick="ultimo()"><br>
+    <input type="button" value="comer" onclick="comiendo()">
+    <input type="button" value="correr" onclick="corriendo()">
+    <input type="button" value="Crear" onclick='crearH()'>
+    <input type="button" value="Mostar humanos" onclick='mostrarH()'>
+    <div id="mydiv"></div>
     <script>
+        var humanos = [];
+        indice = 0;
+        var ventana;
+
+
         class Human {
             constructor(edad, peso) {
                 this._edad = edad;
@@ -39,13 +56,80 @@
             }
 
             muestraUnDato() {
-                return "Peso = " + this._peso + "------ Edad = " + this._edad;
+                var resultado = "Peso = " + this.peso + "------ Edad = " + this.edad + '<br>';
+                return resultado;
             }
 
-            static mostrarDatos(x) {
-                return "Peso = " + x._peso + "------ Edad = " + this._edad;
-                "
+            static mostrarDatos() {
+                var texto = '<table><tr><th>Peso</th><th>Edad</th>';
+                for (var humano of humanos) {
+                    texto += '<tr><td>' + humano.peso + '</td><td>' + humano.edad + "</td><tr>";
+                }
+                texto += '</table>';
+                return texto;
             }
+
+
+        }
+
+        function primero() {
+            indice = 0;
+            document.getElementById('edad').value = humanos[indice].edad;
+            document.getElementById('peso').value = humanos[indice].peso;
+        }
+
+        function anterior() {
+            indice--;
+            if (indice == -1) {
+                indice = humanos.length - 1;
+            }
+            document.getElementById('edad').value = humanos[indice].edad;
+            document.getElementById('peso').value = humanos[indice].peso;
+
+        }
+
+        function siguiente() {
+            indice++;
+            if (indice == humanos.length) {
+                indice = 0;
+            }
+            document.getElementById('edad').value = humanos[indice].edad;
+            document.getElementById('peso').value = humanos[indice].peso;
+
+
+        }
+
+        function ultimo() {
+            indice = humanos.length - 1;
+            document.getElementById('edad').value = humanos[indice].edad;
+            document.getElementById('peso').value = humanos[indice].peso;
+        }
+
+        function comiendo() {
+            humanos[indice].comer();
+            document.getElementById('edad').value = humanos[indice].edad;
+            document.getElementById('peso').value = humanos[indice].peso;
+        }
+
+        function corriendo() {
+            humanos[indice].correr();
+            document.getElementById('edad').value = humanos[indice].edad;
+            document.getElementById('peso').value = humanos[indice].peso;
+        }
+
+        function crearH() {
+            var edad = parseInt(document.getElementById('edad').value);
+            var peso = parseInt(document.getElementById('peso').value);
+            humanos.push(new Human(edad, peso));
+            document.getElementById('edad').value = '';
+            document.getElementById('peso').value = '';
+
+        }
+
+        function mostrarH() {
+            ventana = window.open('', '', 'width=250,height=250,top=0,left=0');
+            ventana.window.open();
+            ventana.document.write(Human.mostrarDatos());
 
         }
     </script>
