@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExClase</title>
+</head>
+
+<body>
+    Nombre<input type="text" id="nombre"><br> Apellidos
+    <input type="text" id="apellidos"><br> Direccion
+    <input type="text" id="direccion"><br> Fecha de Nacimiento<input type="text" id="fechaNacimiento"><br> Genero
+    <input type="text" id="genero"><br> Codigo Postal<input type="text" id="codigoPostal"><br>
+    <button onclick="crear();">Crear</button>
+
+    <script>
+        class Persona {
+            constructor(nombre, apellidos, direccion, fechaNacimiento, genero, codigPostal) {
+                this._nombre = nombre;
+                this._apellidos = apellidos;
+                this._direccion = direccion;
+                this._fechaNacimiento = fechaNacimiento;
+                this._genero = genero;
+                this._codigoPostal = codigoPostal;
+            }
+
+            set nombre(x) {
+                this._nombre = x;
+            }
+            get nombre() {
+                return this._nombre;
+            }
+            set apellidos(x) {
+                this._apellidos = x;
+            }
+            get apellidos() {
+                return this._apellidos;
+            }
+            set direccion(x) {
+                this._direccion = x;
+            }
+            get direccion() {
+                return this._direccion;
+            }
+            set fechaNacimiento(x) {
+                this._fechaNacimiento = x;
+            }
+            get fechaNacimiento() {
+                return this._fechaNacimiento;
+            }
+            set genero(x) {
+                this._genero = x;
+            }
+            get genero() {
+                return this._genero;
+            }
+            set codigoPostal(x) {
+                this._codigoPostal = x;
+            }
+            get codigoPostal() {
+                return this._codigoPostal;
+            }
+
+            edad() {
+                var fechaHoy = new Date();
+                var fechaDada = new Date(this.fechaNacimiento);
+                var edad = (fechaHoy.getFullYear() - fechaDada.getFullYear());
+                if (fechaHoy.getMonth() == fechaDada.getMonth() && fechaHoy.getDate() < fechaDada.getDate()) {
+                    edad--;
+                }
+                return edad;
+            }
+
+            señor_o_señora() {
+                if (this.genero.toLowerCase == 'masculino') {
+                    return 'Sr';
+                } else if (this.genero.toLowerCase == 'femenino') {
+                    return 'Sra';
+
+                }
+            }
+
+            listarPersona() {
+                var edad = this.edad();
+                var señor_o_señora = this.señor_o_señora();
+                var html = '<table><tr><th>Nombre</th><th>Apellidos</th><th>Edad</th><th>Direccion</th><th>Fecha de Nacimiento</th><th>Genero</th><th>Codigo Postal</th></tr>';
+                html += '<tr><td>' + señor_o_señora + ' ' + this.nombre + '</td><td>' + this.apellidos + '</td><td>' + edad + '</td><td>' + this.direccion + '</td><td>' + this.fechaNacimiento + '</td><td>' + this.genero + '</td><td>' + this.codigoPostal + '</td></td></table>';
+                return html;
+            }
+
+            static listarPersonas() {
+                var resultado = '';
+                for (var i = 0; i < array.lenght; i++) {
+                    resultado += listarPersona(array[i]);
+                }
+                return resultado;
+            }
+
+
+
+        }
+
+        function crear() {
+            var nombre = document.getElementById(nombre).value;
+        }
+    </script>
+
+</body>
+
+</html>
