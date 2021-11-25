@@ -14,10 +14,11 @@
     <input type="text" id="direccion"><br> Fecha de Nacimiento<input type="text" id="fechaNacimiento"><br> Genero
     <input type="text" id="genero"><br> Codigo Postal<input type="text" id="codigoPostal"><br>
     <button onclick="crear();">Crear</button>
+    <div id="midiv"></div>
 
     <script>
         class Persona {
-            constructor(nombre, apellidos, direccion, fechaNacimiento, genero, codigPostal) {
+            constructor(nombre, apellidos, direccion, fechaNacimiento, genero, codigoPostal) {
                 this._nombre = nombre;
                 this._apellidos = apellidos;
                 this._direccion = direccion;
@@ -65,7 +66,7 @@
 
             edad() {
                 var fechaHoy = new Date();
-                var fechaDada = new Date(this.fechaNacimiento);
+                var fechaDada = this.fechaNacimiento;
                 var edad = (fechaHoy.getFullYear() - fechaDada.getFullYear());
                 if (fechaHoy.getMonth() == fechaDada.getMonth() && fechaHoy.getDate() < fechaDada.getDate()) {
                     edad--;
@@ -85,8 +86,9 @@
             listarPersona() {
                 var edad = this.edad();
                 var señor_o_señora = this.señor_o_señora();
-                var html = '<table><tr><th>Nombre</th><th>Apellidos</th><th>Edad</th><th>Direccion</th><th>Fecha de Nacimiento</th><th>Genero</th><th>Codigo Postal</th></tr>';
-                html += '<tr><td>' + señor_o_señora + ' ' + this.nombre + '</td><td>' + this.apellidos + '</td><td>' + edad + '</td><td>' + this.direccion + '</td><td>' + this.fechaNacimiento + '</td><td>' + this.genero + '</td><td>' + this.codigoPostal + '</td></td></table>';
+                var mes = parseInt(this.fechaNacimiento.getMonth()) + 1;
+                var html = "<table border='1'><tr><th>Nombre</th><th>Apellidos</th><th>Edad</th><th>Direccion</th><th>Fecha de Nacimiento</th><th>Genero</th><th>Codigo Postal</th></tr>";
+                html += '<tr><td>' + señor_o_señora + ' ' + this.nombre + '</td><td>' + this.apellidos + '</td><td>' + edad + '</td><td>' + this.direccion + '</td><td>' + this.fechaNacimiento.getDate() + '/' + mes + '/' + this.fechaNacimiento.getFullYear() + '</td><td>' + this.genero + '</td><td>' + this.codigoPostal + '</td></tr></table>';
                 return html;
             }
 
@@ -103,7 +105,22 @@
         }
 
         function crear() {
-            var nombre = document.getElementById(nombre).value;
+            var nombre = document.getElementById('nombre').value;
+            var apellidos = document.getElementById('apellidos').value;
+            var direccion = document.getElementById('direccion').value;
+            var fechaNacimiento = document.getElementById('fechaNacimiento').value;
+            var genero = document.getElementById('genero').value;
+            var codigoPostal = document.getElementById('codigoPostal').value;
+
+            var fecha = fechaNacimiento.split('/');
+            var año = parseInt(fecha[2]);
+            var mes = parseInt(fecha[1]) - 1;
+            var dia = parseInt(fecha[0]);
+            console.log(new Date(año, mes, dia));
+            var persona = new Persona(nombre, apellidos, direccion, new Date(año, mes, dia), genero, codigoPostal);
+            var lista = persona.listarPersona();
+            console.log(lista);
+            document.getElementById('midiv').innerHTML = lista;
         }
     </script>
 
