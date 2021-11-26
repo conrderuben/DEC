@@ -13,10 +13,19 @@
     <input type="text" id="apellidos"><br> Direccion
     <input type="text" id="direccion"><br> Fecha de Nacimiento<input type="text" id="fechaNacimiento"><br> Genero
     <input type="text" id="genero"><br> Codigo Postal<input type="text" id="codigoPostal"><br>
-    <button onclick="crear();">Crear</button>
+    <input type="button" onclick="primero();" value="|<<" id="primero">
+    <input type="button" onclick="anterior();" value="<" id="anterior">
+    <input type="button" onclick="siguiente();" value=">" id="siguiente">
+    <input type="button" onclick="ultimo();" value=">>|" id="ultimo">
+    <button id='accion' onclick="accion();">Accion</button>
+    <button id='crear' onclick="crear();">Crear</button>
     <div id="midiv"></div>
 
     <script>
+        var array = [];
+        var selected = 0;
+        document.getElementById('crear').disabled = true;
+
         class Persona {
             constructor(nombre, apellidos, direccion, fechaNacimiento, genero, codigoPostal) {
                 this._nombre = nombre;
@@ -75,10 +84,14 @@
             }
 
             señor_o_señora() {
-                if (this.genero.toLowerCase == 'masculino') {
-                    return 'Sr';
-                } else if (this.genero.toLowerCase == 'femenino') {
-                    return 'Sra';
+                var apodo;
+                if (this.genero.toLowerCase() == 'masculino') {
+                    apodo = 'Sr';
+                    return apodo;
+                } else if (this.genero.toLowerCase() == 'femenino') {
+                    apodo = 'Sra';
+                    return apodo;
+
 
                 }
             }
@@ -86,6 +99,7 @@
             listarPersona() {
                 var edad = this.edad();
                 var señor_o_señora = this.señor_o_señora();
+                alert(señor_o_señora);
                 var mes = parseInt(this.fechaNacimiento.getMonth()) + 1;
                 var html = "<table border='1'><tr><th>Nombre</th><th>Apellidos</th><th>Edad</th><th>Direccion</th><th>Fecha de Nacimiento</th><th>Genero</th><th>Codigo Postal</th></tr>";
                 html += '<tr><td>' + señor_o_señora + ' ' + this.nombre + '</td><td>' + this.apellidos + '</td><td>' + edad + '</td><td>' + this.direccion + '</td><td>' + this.fechaNacimiento.getDate() + '/' + mes + '/' + this.fechaNacimiento.getFullYear() + '</td><td>' + this.genero + '</td><td>' + this.codigoPostal + '</td></tr></table>';
@@ -104,6 +118,65 @@
 
         }
 
+        function primero() {
+            selected = 0;
+            document.getElementById('nombre').value = array[selected].nombre;
+            document.getElementById('apellidos').value = array[selected].apellidos;
+            document.getElementById('direccion').value = array[selected].direccion;
+            document.getElementById('fechaNacimiento').value = array[selected].fechaNacimientothis.getDate() + '/' + mes + '/' + array[selected].fechaNacimientothis.getFullYear();
+            document.getElementById('genero').value = array[selected].genero;
+            document.getElementById('codigoPostal').value = array[selected].codigoPostal;
+        }
+
+        function anterior() {
+            selected--;
+            if (selected == -1) {
+                selected = array.length - 1;
+            }
+            document.getElementById('nombre').value = array[selected].nombre;
+            document.getElementById('apellidos').value = array[selected].apellidos;
+            document.getElementById('direccion').value = array[selected].direccion;
+            document.getElementById('fechaNacimiento').value = array[selected].fechaNacimiento;
+            document.getElementById('genero').value = array[selected].genero;
+            document.getElementById('codigoPostal').value = array[selected].codigoPostal;
+
+        }
+
+        function siguiente() {
+            selected++;
+            if (selected == array.length) {
+                selected = 0;
+            }
+            document.getElementById('nombre').value = array[selected].nombre;
+            document.getElementById('apellidos').value = array[selected].apellidos;
+            document.getElementById('direccion').value = array[selected].direccion;
+            document.getElementById('fechaNacimiento').value = array[selected].fechaNacimiento;
+            document.getElementById('genero').value = array[selected].genero;
+            document.getElementById('codigoPostal').value = array[selected].codigoPostal;
+
+
+        }
+
+        function ultimo() {
+            selected = array.length - 1;
+            document.getElementById('nombre').value = array[selected].nombre;
+            document.getElementById('apellidos').value = array[selected].apellidos;
+            document.getElementById('direccion').value = array[selected].direccion;
+            document.getElementById('fechaNacimiento').value = array[selected].fechaNacimiento;
+            document.getElementById('genero').value = array[selected].genero;
+            document.getElementById('codigoPostal').value = array[selected].codigoPostal;
+        }
+
+        function accion() {
+            document.getElementById('nombre').value = '';
+            document.getElementById('apellidos').value = '';
+            document.getElementById('direccion').value = '';
+            document.getElementById('fechaNacimiento').value = '';
+            document.getElementById('genero').value = '';
+            document.getElementById('codigoPostal').value = '';
+            document.getElementById('crear').disabled = false;
+        }
+
         function crear() {
             var nombre = document.getElementById('nombre').value;
             var apellidos = document.getElementById('apellidos').value;
@@ -116,10 +189,9 @@
             var año = parseInt(fecha[2]);
             var mes = parseInt(fecha[1]) - 1;
             var dia = parseInt(fecha[0]);
-            console.log(new Date(año, mes, dia));
             var persona = new Persona(nombre, apellidos, direccion, new Date(año, mes, dia), genero, codigoPostal);
+            array.push(persona);
             var lista = persona.listarPersona();
-            console.log(lista);
             document.getElementById('midiv').innerHTML = lista;
         }
     </script>
