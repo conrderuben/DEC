@@ -19,6 +19,7 @@
     <input type="button" onclick="ultimo();" value=">>|" id="ultimo">
     <button id='accion' onclick="accion();">Accion</button>
     <button id='crear' onclick="crear();">Crear</button>
+    <button id='mostrar' onclick="mostrar();">Mostrar</button>
     <div id="midiv"></div>
 
     <script>
@@ -99,23 +100,19 @@
             listarPersona() {
                 var edad = this.edad();
                 var señor_o_señora = this.señor_o_señora();
-                alert(señor_o_señora);
                 var mes = parseInt(this.fechaNacimiento.getMonth()) + 1;
                 var html = "<table border='1'><tr><th>Nombre</th><th>Apellidos</th><th>Edad</th><th>Direccion</th><th>Fecha de Nacimiento</th><th>Genero</th><th>Codigo Postal</th></tr>";
                 html += '<tr><td>' + señor_o_señora + ' ' + this.nombre + '</td><td>' + this.apellidos + '</td><td>' + edad + '</td><td>' + this.direccion + '</td><td>' + this.fechaNacimiento.getDate() + '/' + mes + '/' + this.fechaNacimiento.getFullYear() + '</td><td>' + this.genero + '</td><td>' + this.codigoPostal + '</td></tr></table>';
                 return html;
             }
 
-            static listarPersonas() {
+            static listarPersonas(array) {
                 var resultado = '';
-                for (var i = 0; i < array.lenght; i++) {
-                    resultado += listarPersona(array[i]);
+                for (var i = 0; i < array.length; i++) {
+                    resultado += array[i].listarPersona();
                 }
                 return resultado;
             }
-
-
-
         }
 
         function primero() {
@@ -123,7 +120,7 @@
             document.getElementById('nombre').value = array[selected].nombre;
             document.getElementById('apellidos').value = array[selected].apellidos;
             document.getElementById('direccion').value = array[selected].direccion;
-            document.getElementById('fechaNacimiento').value = array[selected].fechaNacimientothis.getDate() + '/' + mes + '/' + array[selected].fechaNacimientothis.getFullYear();
+            document.getElementById('fechaNacimiento').value = array[selected].fechaNacimiento.getDate() + '/' + (array[selected].fechaNacimiento.getMonth() + 1) + '/' + array[selected].fechaNacimiento.getFullYear();
             document.getElementById('genero').value = array[selected].genero;
             document.getElementById('codigoPostal').value = array[selected].codigoPostal;
         }
@@ -136,7 +133,7 @@
             document.getElementById('nombre').value = array[selected].nombre;
             document.getElementById('apellidos').value = array[selected].apellidos;
             document.getElementById('direccion').value = array[selected].direccion;
-            document.getElementById('fechaNacimiento').value = array[selected].fechaNacimiento;
+            document.getElementById('fechaNacimiento').value = array[selected].fechaNacimiento.getDate() + '/' + (array[selected].fechaNacimiento.getMonth() + 1) + '/' + array[selected].fechaNacimiento.getFullYear();
             document.getElementById('genero').value = array[selected].genero;
             document.getElementById('codigoPostal').value = array[selected].codigoPostal;
 
@@ -150,7 +147,7 @@
             document.getElementById('nombre').value = array[selected].nombre;
             document.getElementById('apellidos').value = array[selected].apellidos;
             document.getElementById('direccion').value = array[selected].direccion;
-            document.getElementById('fechaNacimiento').value = array[selected].fechaNacimiento;
+            document.getElementById('fechaNacimiento').value = array[selected].fechaNacimiento.getDate() + '/' + (array[selected].fechaNacimiento.getMonth() + 1) + '/' + array[selected].fechaNacimiento.getFullYear();
             document.getElementById('genero').value = array[selected].genero;
             document.getElementById('codigoPostal').value = array[selected].codigoPostal;
 
@@ -162,7 +159,7 @@
             document.getElementById('nombre').value = array[selected].nombre;
             document.getElementById('apellidos').value = array[selected].apellidos;
             document.getElementById('direccion').value = array[selected].direccion;
-            document.getElementById('fechaNacimiento').value = array[selected].fechaNacimiento;
+            document.getElementById('fechaNacimiento').value = array[selected].fechaNacimiento.getDate() + '/' + (array[selected].fechaNacimiento.getMonth() + 1) + '/' + array[selected].fechaNacimiento.getFullYear();
             document.getElementById('genero').value = array[selected].genero;
             document.getElementById('codigoPostal').value = array[selected].codigoPostal;
         }
@@ -191,8 +188,14 @@
             var dia = parseInt(fecha[0]);
             var persona = new Persona(nombre, apellidos, direccion, new Date(año, mes, dia), genero, codigoPostal);
             array.push(persona);
-            var lista = persona.listarPersona();
-            document.getElementById('midiv').innerHTML = lista;
+            document.getElementById('crear').disabled = true;
+        }
+
+        function mostrar() {
+            ventana = window.open('', '', 'width=250,height=250,top=0,left=0');
+            ventana.window.open();
+            ventana.document.write(Persona.listarPersonas(array));
+            ventana.window.close();
         }
     </script>
 
