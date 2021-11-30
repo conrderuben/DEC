@@ -19,6 +19,8 @@
     <input type="button" onclick="ultimo();" value=">>|" id="ultimo">
     <button id='accion' onclick="accion();">Accion</button>
     <button id='crear' onclick="crear();">Crear</button>
+    <button id='modificar' onclick="modificar();">Modificar</button>
+    <button id='borrar' onclick="borrar();">Borrar</button>
     <button id='mostrar' onclick="mostrar();">Mostrar</button>
     <div id="midiv"></div>
 
@@ -26,6 +28,10 @@
         var array = [];
         var selected = 0;
         document.getElementById('crear').disabled = true;
+        document.getElementById('borrar').disabled = true;
+        document.getElementById('modificar').disabled = true;
+
+
 
         class Persona {
             constructor(nombre, apellidos, direccion, fechaNacimiento, genero, codigoPostal) {
@@ -172,9 +178,51 @@
             document.getElementById('genero').value = '';
             document.getElementById('codigoPostal').value = '';
             document.getElementById('crear').disabled = false;
+            document.getElementById('borrar').disabled = false;
+            document.getElementById('modificar').disabled = false;
+            
+
         }
 
         function crear() {
+            var nombre = document.getElementById('nombre').value;
+            var apellidos = document.getElementById('apellidos').value;
+            var direccion = document.getElementById('direccion').value;
+            var fechaNacimiento = document.getElementById('fechaNacimiento').value;
+            var genero = document.getElementById('genero').value;
+            var codigoPostal = document.getElementById('codigoPostal').value;
+        
+
+            if(genero.toLowerCase != 'masculino' || 'femenino'){
+                alert('Genero incorrecto');
+            }else{
+
+            var fecha = fechaNacimiento.split('/');
+            var año = parseInt(fecha[2]);
+            var mes = parseInt(fecha[1]) - 1;
+            var dia = parseInt(fecha[0]);
+            var persona = new Persona(nombre, apellidos, direccion, new Date(año, mes, dia), genero, codigoPostal);
+            array.push(persona);
+            document.getElementById('crear').disabled = true;
+            document.getElementById('borrar').disabled = true;
+            document.getElementById('modificar').disabled = true;
+            }
+        }
+
+        function mostrar() {
+            ventana = window.open('', '', 'width=650,height=500,top=50,left=50');
+            ventana.window.open();
+            ventana.document.write(Persona.listarPersonas(array));
+        }
+
+        function borrar(){
+            array.splice(selected,1);
+            primero();
+            document.getElementById('crear').disabled = true;
+            document.getElementById('borrar').disabled = true;
+            document.getElementById('modificar').disabled = true;        }
+
+        function modificar(){
             var nombre = document.getElementById('nombre').value;
             var apellidos = document.getElementById('apellidos').value;
             var direccion = document.getElementById('direccion').value;
@@ -186,16 +234,18 @@
             var año = parseInt(fecha[2]);
             var mes = parseInt(fecha[1]) - 1;
             var dia = parseInt(fecha[0]);
-            var persona = new Persona(nombre, apellidos, direccion, new Date(año, mes, dia), genero, codigoPostal);
-            array.push(persona);
+            array[selected].nombre = nombre;
+            array[selected].apellidos = apellidos;
+            array[selected].direccion = direccion;
+            array[selected].fechaNacimiento = new Date(año, mes, dia);
+            array[selected].genero = genero;
+            array[selected].codigoPostal = codigoPostal;
+            primero();
             document.getElementById('crear').disabled = true;
-        }
+            document.getElementById('borrar').disabled = true;
+            document.getElementById('modificar').disabled = true;
 
-        function mostrar() {
-            ventana = window.open('', '', 'width=250,height=250,top=0,left=0');
-            ventana.window.open();
-            ventana.document.write(Persona.listarPersonas(array));
-            ventana.window.close();
+
         }
     </script>
 
