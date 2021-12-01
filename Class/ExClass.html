@@ -180,7 +180,7 @@
             document.getElementById('crear').disabled = false;
             document.getElementById('borrar').disabled = false;
             document.getElementById('modificar').disabled = false;
-            
+
 
         }
 
@@ -191,21 +191,27 @@
             var fechaNacimiento = document.getElementById('fechaNacimiento').value;
             var genero = document.getElementById('genero').value;
             var codigoPostal = document.getElementById('codigoPostal').value;
-        
+            var eF = /^(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19[1-9][1-9]|20[0-2][0-9])$/;
+            var eCP = /^[0-5][1-9]{3}[0-9]$/;
+            if (nombre.length < 3 || nombre.length > 20) {
 
-            if(genero.toLowerCase != 'masculino' || 'femenino'){
+            } else if (genero.toLowerCase() != 'masculino' && genero.toLowerCase() != 'femenino') {
                 alert('Genero incorrecto');
-            }else{
+            } else if (eCP.test(codigoPostal) == false) {
+                alert('Codigo postal no válido');
+            } else if (eF.test(fechaNacimiento) == false) {
+                alert('Fecha introducida no válida asegurate de introducirlo con el patrón adecuado');
+            } else {
 
-            var fecha = fechaNacimiento.split('/');
-            var año = parseInt(fecha[2]);
-            var mes = parseInt(fecha[1]) - 1;
-            var dia = parseInt(fecha[0]);
-            var persona = new Persona(nombre, apellidos, direccion, new Date(año, mes, dia), genero, codigoPostal);
-            array.push(persona);
-            document.getElementById('crear').disabled = true;
-            document.getElementById('borrar').disabled = true;
-            document.getElementById('modificar').disabled = true;
+                var fecha = fechaNacimiento.split('/');
+                var año = parseInt(fecha[2]);
+                var mes = parseInt(fecha[1]) - 1;
+                var dia = parseInt(fecha[0]);
+                var persona = new Persona(nombre, apellidos, direccion, new Date(año, mes, dia), genero, codigoPostal);
+                array.push(persona);
+                document.getElementById('crear').disabled = true;
+                document.getElementById('borrar').disabled = true;
+                document.getElementById('modificar').disabled = true;
             }
         }
 
@@ -215,14 +221,15 @@
             ventana.document.write(Persona.listarPersonas(array));
         }
 
-        function borrar(){
-            array.splice(selected,1);
+        function borrar() {
+            array.splice(selected, 1);
             primero();
             document.getElementById('crear').disabled = true;
             document.getElementById('borrar').disabled = true;
-            document.getElementById('modificar').disabled = true;        }
+            document.getElementById('modificar').disabled = true;
+        }
 
-        function modificar(){
+        function modificar() {
             var nombre = document.getElementById('nombre').value;
             var apellidos = document.getElementById('apellidos').value;
             var direccion = document.getElementById('direccion').value;
