@@ -7,21 +7,74 @@
     <title>Login</title>
 </head>
 <body>
-    <form name="form">
-    User <input type="text" id="user"/><br>
-    Password <input type="password" id='password' disabled="disabled"><br>
-    <input type="button" value="Login" onclick="validar();" disabled="disabled">
+    <form name="form" id='form'>
+    User <input type="text" id="user" onkeyup="activarP();"><br>
+    Password <input type="password" id='password' disabled='disabled' onkeyup="activarB();"><br>
+    <input type="button" value="Login" onclick='validar()' disabled='disabled' id='sub' name='sub' >
     </form> 
 
     <script>
-        var user = document.getElementById('user').value;
-        var password = document.getElementById('user').value;
-        var user = document.getElementById('user').value;
+       
 
+    function activarP(){
+        var user = document.getElementById('user').value;
+        if (user!=''){
+            document.getElementById('password').disabled = false;
+        }else{
+            document.getElementById('password').disabled = true;
+
+        }
+    }
+
+    function activarB(){
+        var password = document.getElementById('password').value;
+        if (password!=''){
+            document.getElementById('sub').disabled = false;
+        }else{
+            document.getElementById('sub').disabled = true;
+
+        }
+    }
+    
+        var intentos = 3;
+        var intentosUsados = 0;
 
         function validar(){
-            
+
+
+        var user = document.getElementById('user').value;
+        var password = document.getElementById('password').value;
+        
+
+            if(user == 'ruben' && password == 'ruben'){
+                metodo('get');
+                action('https://www.google.es');
+                form.submit();
+
+            }else if(intentosUsados!=2){
+                intentos--;
+                intentosUsados++;
+                alert('Has fallado' + intentosUsados + ' veces, te quedan ' + intentos + ' intentos');
+                
+            }else{
+                intentos--;
+                intentosUsados++;
+                alert('Has fallado' + intentosUsados + ' veces, te quedan ' + intentos + ' intentos');
+                metodo('post');
+                action('mal.html');
+                form.submit();
+            }
         }
+        function metodo(x){
+            form.method = x;
+        }
+
+        function action(x){
+            form.action = x;
+        }
+
+        
+        
 
     </script>
 
