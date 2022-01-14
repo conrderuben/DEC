@@ -11,11 +11,11 @@
         var eURL= /^[http:// | https://]?.{1,}[.][a-z]{2,}$/;
     </script>
     <form>
-    Matricula: <input type="text" id="matricula" onkeyup="validar(/^\d{4}-{1}[a-z]{3}$/, 'matricula');"><br>
-    Telefono: <input type="text" id="telefono" onkeyup="validar(/^[6-9]{1}\d{1}-{1}\d{3}-{1}\d{2}-{1}\d{2}$/, 'telefono');"><br>
-    Código postal <input type="text" id="cp" onkeyup="validar(/^\d{5}$/,'cp');"><br>
-    Nombre <input type="text" id="nombre" onkeyup="validar(/^[a-zA-ZñçáéíóúÁÉÍÓÚ]{2}[a-zA-ZñçáéíóúÁÉÍÓÚ -]{0,18}$/,'nombre');"><br>
-    URL <input type="text"  id="url" onkeyup="validar(/^((http)s?:[/][/])?[a-z]{1,}([.][a-z]{2,})+$/ ,'url')";><br>
+    Matricula: <input type="text" id="matricula" onkeyup="validar(/^\d{4}-{1}[^aeiou]{3}$/, 'matricula');" placeholder="DDDD-LLL"><br>
+    Telefono: <input type="text" id="telefono" onkeyup="validar(/^[6-9]{1}\d{1}-{1}\d{3}-{1}\d{2}-{1}\d{2}$/, 'telefono');" placeholder="DD-DDD-DD-DD"><br>
+    Código postal <input type="text" id="cp" onkeyup="validar(/^\d{5}$/,'cp');" placeholder="DDDDD"><br>
+    Nombre <input type="text" id="nombre" onkeyup="validar(/^[a-zA-ZñçáéíóúÁÉÍÓÚ]{2}[a-zA-ZñçáéíóúÁÉÍÓÚ -]{0,18}$/,'nombre');" placeholder="LLLLL LLLL"><br>
+    URL <input type="text"  id="url" onkeyup="validar(/^((http)s?:[/][/])?[a-z]{1,}([.][a-z]{2,})+$/ ,'url')" placeholder="https://google.es";><br>
     <br>
     <input type="button" value="añadir" id="añadir" onclick="mostrar();" disabled="disabled">
     </form>
