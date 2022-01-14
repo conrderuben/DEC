@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ValidacionForm</title>
+</head>
+<body>
+    <script>
+        var eURL= /^[http:// | https://]?.{1,}[.][a-z]{2,}$/;
+    </script>
+    <form>
+    Matricula: <input type="text" id="matricula" onkeyup="validar(/^\d{4}-{1}[a-z]{3}$/, 'matricula');"><br>
+    Telefono: <input type="text" id="telefono" onkeyup="validar(/^[6-9]{1}\d{1}-{1}\d{3}-{1}\d{2}-{1}\d{2}$/, 'telefono');"><br>
+    Código postal <input type="text" id="cp" onkeyup="validar(/^\d{5}$/,'cp');"><br>
+    Nombre <input type="text" id="nombre" onkeyup="validar(/^[a-zA-ZñçáéíóúÁÉÍÓÚ]{2}[a-zA-ZñçáéíóúÁÉÍÓÚ -]{0,18}$/,'nombre');"><br>
+    URL <input type="text"  id="url" onkeyup="validar(/^((http)s?:[/][/])?[a-z]{1,}([.][a-z]{2,})+$/ ,'url')";><br>
+    <br>
+    <input type="button" value="añadir" id="añadir" onclick="mostrar();" disabled="disabled">
+    </form>
+
+    <textarea cols="50" rows="15" id="ta"></textarea>
+
+    <script>
+        
+
+        function validar(ex, id){
+            var matricula = document.getElementById('matricula');
+            var telefono = document.getElementById('telefono');
+            var cp = document.getElementById('cp');
+            var nombre = document.getElementById('nombre');
+            var url = document.getElementById('url');
+            
+            var element = document.getElementById(id).value;
+
+            if(ex.test(element)){
+                document.getElementById(id).style.color = 'blue';
+                
+            }else{
+                document.getElementById(id).style.color = 'red';
+                
+            }
+
+            if( matricula.style.color == 'blue' && telefono.style.color == 'blue' && cp.style.color == 'blue' &&
+            nombre.style.color == 'blue' && url.style.color == 'blue'){
+                document.getElementById('añadir').disabled = false;
+            }
+        }
+
+        function mostrar(){
+            var matricula = document.getElementById('matricula').value;
+            var telefono = document.getElementById('telefono').value;
+            var cp = document.getElementById('cp').value;
+            var nombre = document.getElementById('nombre').value;
+            var url = document.getElementById('url').value;
+
+            var texto = "Matricula: " + matricula + "   Telefono: " + telefono  + "   Codigo Postal: " + cp + "   Nombre: " + nombre + "   URL: " + url;
+
+            document.getElementById('ta').value = texto;
+        }
+    </script>
+</body>
+</html>
