@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="form" name ="form">
+        <h3>¿Desea suscribirse a nuestro boletin semanal?</h3>
+
+        <input type="checkbox" name ="acepto" onchange="accion(this);">
+        Si, quiero
+        
+        
+        <h3>Selecciona los temas de interes</h3>
+
+        <input type="checkbox" id="ciencias" name="intereses[]">Ciencias<br>
+        <input type="checkbox" id="deporte" name="intereses[]">Deporte<br>
+        <input type="checkbox" id="arte" name="intereses[]">Arte y Cultura<br>
+
+    </form>
+
+    <script>
+        var array = document.form["intereses[]"];
+
+        array.forEach(element => {
+            element.disabled = true;
+        });
+
+        function accion(x){
+            var array = document.form["intereses[]"];
+            if(x.checked == false){
+                array.forEach(element => {
+                    element.disabled = true;
+                });
+            }else{
+                array.forEach(element => {
+                    element.disabled = false;
+                });
+            }
+
+        }
+    </script>
+</body>
+</html>

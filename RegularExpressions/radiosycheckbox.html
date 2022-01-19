@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="form" name ="form">
+        <h3>¿Desea suscribirse a nuestro boletin semanal?</h3>
+
+        <input type="radio" name ="radio" value="si" onclick="accion(this.value);">
+        Si, quiero
+        <input type="radio" name ="radio" value="no" onclick="accion(this.value);"" checked="checked">
+        No, quiero
+        <br>
+        
+        <h3>Selecciona los temas de interes</h3>
+
+        <input type="checkbox" id="ciencias" name="intereses[]">Ciencias<br>
+        <input type="checkbox" id="deporte" name="intereses[]">Deporte<br>
+        <input type="checkbox" id="arte" name="intereses[]">Arte y Cultura<br>
+
+    </form>
+
+    <script>
+
+        var prueba = document.form["intereses[]"];
+
+        prueba.forEach(element => {
+            element.disabled = true;
+        });
+
+        function accion(x){
+            if(x=="no"){
+                var prueba = document.form["intereses[]"];
+
+                prueba.forEach(element => {
+                    element.disabled = true;
+                });
+            }else{
+                var prueba = document.form["intereses[]"];
+
+                prueba.forEach(element => {
+                    element.disabled = false;
+                });
+            }
+
+            //CON OTRA FORMA----------------------------------------------------------------
+
+                // var array = document.getElementsByName("intereses[]");
+                // array.forEach(element => {
+                //     element.disabled = true;
+                // });
+               
+            // }else{
+            //     var array = document.getElementsByName("intereses[]");
+            //     array.forEach(element => {
+            //         element.disabled = false;
+            //     });
+            // }
+        }
+    </script>
+</body>
+</html>
