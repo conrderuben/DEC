@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form name="form">
+        Introduzca texto: <input type="text" name="text" id="text">
+        <input type="button" id="añadir" name="añadir" onclick="añadirOp()" value="Añadir"><br>
+        <select name="Sizquierda" id="Sizquierda" multiple>
+            <option value="Opcion1">Opcion1</option>
+            <option value="Opcion2">Opcion2</option>
+            <option value="Opcion3">Opcion3</option>
+        </select>
+        <input type="button" id="moverD" name="moverD" value=">>" onclick="moverDerecha()"> 
+        <input type="button" id="moverI" name="moverI" value="<<" onclick="moverI()">
+        <input type="button" id="moverTD" name="moverTD" value=">>|" onclick="moverTD()">
+        <input type="button" id="moverTI" name="moverTI" value="|<<" onclick="moverTI()">
+        <input type="button" id="borrarTD" name="borrarTD" value="X1" onclick="borrarTD()">
+        <input type="button" id="borrarTI" name="borrarTI" value="X2" onclick="borrarTI()">
+        <select name="Sderecha" id="Sderecha" multiple></select><br>
+        <input type="button" id="cd" name="cd" onclick="cd()" value="Copiar a la Derecha">
+        <input type="button" id="ci" name="ci" onclick="ci()" value="Copiar a la Izquierda"><br>
+        <input type="button" id="bi" name="bi" onclick="bi()" value="Borrar a la Izquierda">
+        <input type="button" id="bd" name="bd" onclick="bd()" value="Borrar a la Derecha">
+    </form>
+
+    <script>
+
+
+function añadirOp(){
+    form.Sizquierda.options[form.Sizquierda.options.lenght] = new Option (form.text.value);
+    form.text.value
+}
+        function moverDerecha(){
+            console.log(form.Sizquierda.options[form.Sizquierda.selectedIndex].value);
+            form.Sizquierda[0] = form.Sizquierda.options[form.Sizquierda.selectedIndex];
+        }
+    </script>
+
+
+</body>
+</html>
