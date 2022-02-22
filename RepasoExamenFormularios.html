@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repaso</title>
+</head>
+<body>
+
+    <form name="form">
+
+    <label for="matricula">Matricula</label>
+    <input type="text" id="matricula" name="matricula" onkeyup="validar(/^\d{4}-[b-df-hj-ñp-tv-z]{3}$/,this)"><br>
+
+    <label for="telefono">Telefono</label>
+    <input type="text" id="telefono" name="telefono" onkeyup="validar(/^[6789]\d-\d{3}-\d{2}-\d{2}$/,this)"><br>
+    
+    <label for="cp">Codigo postal</label>
+    <input type="text" id="cp" name="cp" onkeyup="validar(/^\d{5}$/,this)"><br>
+
+    <label for="nombre">Nombre</label>
+    <input type="text" id="nombre" name="nombre" onkeyup="validar(/^[A-Za-zñçáéíóú]{2}[A-Za-zñçáéíóú -]{0,18}$/,this)"><br>
+
+    <label for="url">URL</label>
+    <input type="text" id="url" name="url" onkeyup="validar(/^(http:[/][/]){0,1}[a-z]+([.][a-z]{2,})+$/,this)"><br>
+
+    <label for="true">Confirmar</label>
+    <input type="radio" value="true" name="confirmar" id="true">
+
+    <label for="true">Sin confirmar</label>
+    <input type="radio" value="false" name="confirmar" id="true">
+
+    
+
+    <label for="sel">Select</label>
+    <select name="sel" id="sel" size="3">
+        <option value="1">default</option>
+    </select>
+</form>
+<input type="button" value="añadir" name="añadir" disabled="disabled" id="añadir" onclick="añadirSelect()">
+<input type="button" value="borrar" name="borrar" id="borrar" onclick="borrar()">
+
+
+
+</select>
+
+<script>
+    console.log(form.sel.length);
+
+    function validar(eRegular, elemento){
+
+        form.sel.size=1;
+        if(eRegular.test(elemento.value)){
+            elemento.style.color="blue";
+        }else{
+            elemento.style.color="red";
+        }
+
+        habilitar();
+    }
+
+    function habilitar(){
+        if(form.matricula.style.color=='blue' && form.telefono.style.color=='blue' && 
+        form.cp.style.color=='blue' && form.nombre.style.color=='blue' && form.url.style.color=='blue'){
+
+            form.confirmar[0].checked=1;
+            form.confirmar[1].checked=0;
+            añadir(false);
+        }else{
+            form.confirmar[1].checked=1;
+            añadir(true);
+        }
+}
+function añadir(valor){
+    document.getElementById("añadir").disabled = valor;
+}
+
+function añadirSelect(){
+    form.sel.options[form.sel.length] = new Option(form.nombre.value, form.cp.value,true,true);
+}
+function borrar(){
+    for(var i=form.sel.options.length; i>=0; i--){
+        form.sel.options[i]=null;
+    }
+}
+
+
+
+
+</script>
+
+
+</body>
+</html>

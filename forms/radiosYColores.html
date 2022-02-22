@@ -9,15 +9,15 @@
 <body>
     
     <form name="form">
-        <input type="radio" value="red" name="grupo1[]">red<br>
-        <input type="radio" value="blue" name="grupo1[]">blue<br>
-        <input type="radio" value="green" name="grupo1[]">green<br>
-        <input type="radio" value="yellow" name="grupo1[]">yellow<br>
+        <input type="radio" value="red" name="grupo1">red<br>
+        <input type="radio" value="blue" name="grupo1">blue<br>
+        <input type="radio" value="green" name="grupo1">green<br>
+        <input type="radio" value="yellow" name="grupo1">yellow<br>
     <hr>
-        <input type="radio" value="purple" name="grupo2[]">purple<br>
-        <input type="radio" value="white" name="grupo2[]">white<br>
-        <input type="radio" value="black" name="grupo2[]">black<br>
-        <input type="radio" value="pink" name="grupo2[]">pink<br>
+        <input type="radio" value="purple" name="grupo2">purple<br>
+        <input type="radio" value="white" name="grupo2">white<br>
+        <input type="radio" value="black" name="grupo2">black<br>
+        <input type="radio" value="pink" name="grupo2">pink<br>
     </form>
     <hr>
 
@@ -28,8 +28,8 @@
     <hr>
 
     <script>
-        var array1 = form["grupo1[]"];
-        var array2 = form["grupo2[]"];
+        var array1 = form.grupo1;
+        var array2 = form.grupo2;
 
         array1.forEach(element => {
             element.setAttribute("onclick", "cambiar(this.value,1);");
